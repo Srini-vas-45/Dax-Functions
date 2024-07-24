@@ -1,0 +1,19 @@
+
+Begining of Month HC = 
+var _min_date = minx(all('Calendar'),'Calendar'[Dates])
+var _Expression=if(ISFILTERED('Calendar'[Month]),
+MAXX('Calendar',DATEADD('Calendar'[Dates],-1,MONTH)),
+MAXX('Calendar',DATEADD('Calendar'[Dates],-1,YEAR)))
+Return
+ CALCULATE(COUNTx(FILTER('HC data','HC data'[Date Of Joining]<=_Expression && 'HC data'[Date Of Joining]>_min_date && (ISBLANK('HC data'[Date of Exit]) ||
+'HC data'[Date of Exit]>_Expression)),
+('HC data'[Employee Id])),
+CROSSFILTER('HC data'[Date Of Joining],'Calendar'[Dates], None))
+
+End of month HC = 
+ CALCULATE(COUNTx(FILTER('HC data','HC data'[Date Of Joining]<=max('Calendar'[Dates]) && (ISBLANK('HC data'[Date of Exit]) ||
+'HC data'[Date of Exit]>max('Calendar'[Dates]))),
+('HC data'[Employee Id])),
+CROSSFILTER('HC data'[Date Of Joining],'Calendar'[Dates],None))
+
+
