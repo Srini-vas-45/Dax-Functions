@@ -1,0 +1,5 @@
+PATHCONTAINS(RLS[Path],
+MAXX(
+FILTER(RLS,[Official Email Id] = USERPRINCIPALNAME()),RLS[Employee Id]
+)
+)
