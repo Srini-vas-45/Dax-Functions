@@ -1,8 +1,0 @@
-let
-    #"Active Headcount_Sheet" = Source{[Item="Active Headcount",Kind="Sheet"]}[Data],
-    #"Promoted Headers" = Table.PromoteHeaders(#"Active Headcount_Sheet", [PromoteAllScalars=true]),
-    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Client Name", type text}, {"Emp ID", type any}, {"Employee Name", type text}, {"Designation", type text}, {"DOJ", type date}, {"Staffing Category", type text}, {"Billable Status", type text}, {"Location", type text}, {"Moder Business Unit", type text}, {"Moder Business Function", type text}, {"Management Client Process", type text}, {"Management Client Sub-Process", type text}, {"Management Client Channel", type text}, {"Moder Channel", type text}, {"Entity", type text}, {"SOW #", type text}, {"Service", type text}, {"Sub Service", type text}, {"Cost Center Number", Int64.Type}, {"Cost Center Name", type text}, {"Skill Set", type text}}),
-    #"Replaced Value" = Table.ReplaceValue(#"Changed Type","Freedom Related","Freedom",Replacer.ReplaceText,{"Entity"}),
-    #"Removed Duplicates" = Table.Distinct(#"Replaced Value")
-in
-    #"Removed Duplicates"
